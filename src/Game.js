@@ -29,7 +29,7 @@ const Game = props =>  (
 export default Game;
 
 const createCell = (y, x, { board, onClickCell }) => (
-  <td onClick={onClickCell(y, x)}>
+  <td onClick={() => onClickCell(y, x)}>
     {board[y][x]}
   </td>
 );

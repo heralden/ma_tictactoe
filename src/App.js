@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import Game from './Game';
+import {
+  placePiece,
+  nextPiece
+} from './actions';
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +19,15 @@ class App extends Component {
     };
   }
 
-  handleClickCell = (e) => {
+  handleClickCell = (y, x) => {
+    this.setState((prevState) => ({
+      board: placePiece(
+        prevState.board,
+        prevState.piece,
+        y, x),
+      piece: nextPiece(
+        prevState.piece)
+    }));
   }
 
   render() {
