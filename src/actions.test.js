@@ -1,18 +1,11 @@
 import {
+  emptyBoard,
   copyBoard,
   placePiece,
   nextPiece,
-  isGameOver,
+  isDraw,
   winningPiece
 } from './actions';
-
-function emptyBoard() {
-  return [
-    [ null, null, null ],
-    [ null, null, null ],
-    [ null, null, null ]
-  ];
-}
 
 it('creates a new copy of the board', () => {
   const board = emptyBoard();
@@ -41,7 +34,7 @@ it('returns the next piece', () => {
   expect(secondPiece).toBe('X');
 });
 
-it('returns whether game is over', () => {
+it('returns whether game is a draw', () => {
   const undone = emptyBoard();
   const done = [
     [ 'X', 'O', 'X' ],
@@ -49,14 +42,14 @@ it('returns whether game is over', () => {
     [ 'X', 'O', 'X' ]
   ];
 
-  const resUndone = isGameOver(undone);
-  const resDone = isGameOver(done);
+  const resUndone = isDraw(undone);
+  const resDone = isDraw(done);
 
   expect(resUndone).toBe(false);
   expect(resDone).toBe(true);
 });
 
-it('returns the piece that won the game', () => {
+it('returns the piece that won the game or draw', () => {
   const Owins = [
     [ 'O', 'X', 'X' ],
     [ 'X', 'O', 'X' ],
